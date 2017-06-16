@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+    <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <header id="section1">
+  <div class="heroText">
+    <h1>Track the Earth</h1>
+    <p>Planet Earth is constantly changing. Click the button below to learn more about our Home.</p>
+    <a href="#section2" id="buttonBounce" class="smoothScroll animated"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
+  </div>
+  </header>
+  <body>
+    <div id="section2" class="information">
+      <h2>Information</h2>
+      <p>More and more NASA imagery is being made available via web services (WMS, WMTS, etc.) and a significant percentage of it is being produced and published in near real time (NRT = within a few hours after acquisition). This ability means that NASA imagery can be used more routinely to examine current natural events as they happen.</p>
+      <p>Many thanks to the team at EONET NASA for curating the data used, and to all the hard working scientists in the field who make us all collectively aware of the health of our planet.</p>
+      <p>This Application will be updated as more events are logged and scientifically verified, sometimes hours after they occur.</p>
+      <a href="#section3"  id="buttonBounce" class="smoothScroll animated"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
+    </div>
+  <section id="section3" class="mapAndFooter">
+    <div class="container">
+        <h2 id="page-title">Natural Disasters <span class="colourText">Worldwide</span></h2>
+        <form action="">
+          <label for="event">Select a Natural Disaster</label>
+          <select name="categories" id="">
+              <option value="Drought">Drought</option>
+              <option value="Dust and Haze">Dust and Haze</option>
+              <option value="Earthquakes">Earthquakes</option>
+              <option value="Floods">Floods</option>
+              <option value="Landslides">Landslides</option>
+              <option value="Manmade">Manmade</option>
+              <option value="Sea and Lake Ice">Sea and Lake Ice</option>
+              <option value="Severe Storms">Severe Storms</option>
+              <option value="Snow">Snow</option>
+              <option value="Temperature Extremes">Temperature Extremes</option>
+              <option value="Volcanoes">Volcanoes</option>
+              <option value="Water Colour">Water Colour</option>
+              <option value="Wildfires">Wildfires</option>
+          </select>
+        </form>
+      </div>
+      <div><p class="categoryInfo"></p></div>
+      <div id="map"></div>
+      <footer>
+          <div class="footer__left">
+            <a href="#section1" class="smoothScroll">Return to Top</a>
+          </div>
+          <div class="footer__middle">
+            <a href="https://www.twitter.com/chriscomper">Created by</i><i class="fa fa-twitter"></i>Christopher Comper</a>
+          </div>
+          <div class="footer__right">
+          <a href="https://eonet.sci.gsfc.nasa.gov/">
+            <img src="assets/nasa-logo.svg" alt="NASA logo and link to EONET systems page">
+          </a>
+          </div>
+      </footer>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="smoothscroll.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8122lUNHck3pF4O7eGn02oXpTAsNoI-E"></script>
+      <script src="scripts.js"></script>
+    </body>
+  </section>
+</html>
