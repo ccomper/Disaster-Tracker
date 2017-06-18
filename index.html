@@ -5,24 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lustria|Lato" rel="stylesheet">
     <link rel="stylesheet" href="animate.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <header id="section1">
-  <div class="heroText">
-    <h1>Track the Earth</h1>
-    <p>Planet Earth is constantly changing. Click the button below to learn more about our Home.</p>
-    <a href="#section2" id="buttonBounce" class="smoothScroll animated"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
-  </div>
+    <navbar class="navbar-header">
+      <img src="assets/noun_16732_cc.svg" alt="logo image of planet and explosion">
+    </navbar>
+    <div class="heroText">
+      <p>Welcome to</p>
+      <h1>Disaster Tracker</h1>
+      <a href="#section2" id="buttonBounce" class="smoothScroll animated"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
+    </div>
   </header>
   <body>
     <div id="section2" class="information">
       <h2>Information</h2>
-      <p>More and more NASA imagery is being made available via web services (WMS, WMTS, etc.) and a significant percentage of it is being produced and published in near real time (NRT = within a few hours after acquisition). This ability means that NASA imagery can be used more routinely to examine current natural events as they happen.</p>
-      <p>Many thanks to the team at EONET NASA for curating the data used, and to all the hard working scientists in the field who make us all collectively aware of the health of our planet.</p>
-      <p>This Application will be updated as more events are logged and scientifically verified, sometimes hours after they occur.</p>
-      <a href="#section3"  id="buttonBounce" class="smoothScroll animated"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
+      <p>Welcome to Disaster Tracker, a live, lightweight resource for scientifically verified global events. This Application will be updated as events happen, sometimes hours after they occur.</p>
+      <p>Special thanks to the team at EONET NASA for curating the data used, and to all the hard working scientists in the field who make us all collectively aware of the health of our planet.</p>
+      <div class="section2__footer">
+        <a href="#section3" id="buttonBounce" class="smoothScroll animated"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a> 
+      </div>
+      <div class="section2__footerIcons">
+        <a href="https://www.twitter.com/chriscomper"  target="_blank"></i><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/chris-comper-07bb6a13b/"  target="_blank"></i><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+        <a href="https://github.com/ccomper"  target="_blank"></i><i class="fa fa-github" aria-hidden="true"></i></a> 
+        <a href="https://eonet.sci.gsfc.nasa.gov/"  target="_blank"><i class="fa fa-rocket" aria-hidden="true"></i></a>
+      </div>
     </div>
   <section id="section3" class="mapAndFooter">
     <div class="container">
@@ -48,7 +58,7 @@
       </div>
       <div><p class="categoryInfo"></p></div>
       <div id="map"></div>
-      <footer>
+      <!-- <footer>
           <div class="footer__left">
             <a href="#section1" class="smoothScroll">Return to Top</a>
           </div>
@@ -60,7 +70,7 @@
             <img src="assets/nasa-logo.svg" alt="NASA logo and link to EONET systems page">
           </a>
           </div>
-      </footer>
+      </footer> -->
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
       <script src="smoothscroll.js"></script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8122lUNHck3pF4O7eGn02oXpTAsNoI-E"></script>
