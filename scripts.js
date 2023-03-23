@@ -102,7 +102,7 @@ $('select').on('change', function(){
     //generate description for each general event category i.e. volcanoes, snow events...etc.
     //for each event with the value of the selected option
     if (eventsArray.length === 0) {
-    displayErrorMessage('There is no event currently active in the EONENT database! Try another category');
+    displayErrorMessage('There is no event currently active in the EONENT database matching the selected category. Try selecting another.');
     console.log('cannot generate coordinates of empty array!');
     }
     eventsArray.forEach(function(event){ 
@@ -141,11 +141,21 @@ app.addMarkerWithTimeout = function (coordinatesOfEvents, string) {
     });//declare infowindow on each marker
     var infowindow = new google.maps.InfoWindow({
           content: string
-        });//add event listener for click on each infowindow
-    marker.addListener('click', function() {
-          //when an info window is opened, close the previous one.
-          let currentInfoWindow = null;
-          currentInfoWindow = infowindow.open(map, marker);
+        });
+        //capture the current info window, if any are open
+        currentInfoWindow = null;
+        //add a listener to each marker
+        marker.addListener('click', function() {
+          //close the current info window if one is already open
+          if (currentInfoWindow) {
+            currentInfoWindow.close();
+          }
+          var infoWindow = new google.maps.InfoWindow({
+            content: string,
+            position: marker.getPosition()
+          });
+          infoWindow.open(map, marker);
+          currentInfoWindow = infoWindow;
         });
     //push marker to array
     app.markersArray.push(marker)
