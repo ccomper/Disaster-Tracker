@@ -20,7 +20,7 @@ app.initMap = function() {
 // Make AJAX request to NASAevents for data on events
 app.getEventsInfo = function() {
   return $.ajax({
-        url: 'https://eonet.sci.gsfc.nasa.gov/api/v2.1/events',
+        url: 'https://eonet.gsfc.nasa.gov/api/v3/events',
         method: 'GET',
         dataType: 'json',
         data: {
@@ -35,7 +35,7 @@ app.getEventsInfo = function() {
 //make AJAX request to NASA categories on events
 app.getCategoriesInfo = function(){
   return $.ajax({
-        url: 'https://eonet.sci.gsfc.nasa.gov/api/v2.1/categories',
+        url: 'https://eonet.gsfc.nasa.gov/api/v3/categories',
         method: 'GET',
         dataType: 'json',
         data: {
@@ -44,6 +44,7 @@ app.getCategoriesInfo = function(){
             }
     })
 };
+
 //when events info and categories info are both returned allow app to continue
 $.when(app.getEventsInfo() , app.getCategoriesInfo())
 //then execute a function 
@@ -69,10 +70,16 @@ app.mergeEventsAndCategories = function(events, categories) {
     }
   });  
 }
-
-console.log(app.mergedEventsAndCategories);
 //listen for selection change and place markers in category
-$('select').on('change', function(){ 
+$('select').on('change', function(){
+
+  //clear the error message if the prior category was empty
+  function clearErrorMessage() {
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.innerHTML = '';
+  };
+  clearErrorMessage();
+  //set the values related to the events and categories
   var userVal =  $(this).val();
   $('categoryInfo').html('');
   //set markersArray to clear 
@@ -82,14 +89,21 @@ $('select').on('change', function(){
   //iterate over each category in mergedEvents object 
   $('.categoryInfo').html(`Description of Event: ${allCategories[userVal].description}`);
 
+  //create a dynamic error message if the event category selected is empty
+  function displayErrorMessage(message) {
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.innerHTML = message;
+  }
+
   let totalCoordinatesOfEvent;
   for (var category in allCategories) {
     let eventsArray = allCategories[selectedCategory].events;
     //generate description for each general event category i.e. volcanoes, snow events...etc.
     //for each event with the value of the selected option
     if (eventsArray.length === 0) {
+    displayErrorMessage('There is no event currently active in the EONENT database! Try another category');
     console.log('cannot generate coordinates of empty array!');
-    } 
+    }
     eventsArray.forEach(function(event){ 
       //set marker content to each
       var markerContentString = `
@@ -97,14 +111,14 @@ $('select').on('change', function(){
                 <div id="markerNotice"></div>
                 <h2 id="firstHeading" class="firstHeading">${event.title}</h2>
                 <div id="bodyContent">
-                  <p>Date of Event: ${event.geometries[0].date}</p>
+                  <p>Date of Event: ${event.geometry[0].date}</p>
                   <p>More on event: <a href="${event.sources[0].url}" target="_blank">Link
                   </a></p>
                 </div>
               </div>`
       //iterate over each array that represents events and 
       //set coordinates variable to store all coordinates from all events
-      totalCoordinatesOfEvent = event.geometries[event.geometries.length - 1].coordinates; 
+      totalCoordinatesOfEvent = event.geometry[event.geometry.length - 1].coordinates; 
       //call generateMarkers and pass coordinates of event in
       // app.generateMarkers(eventsArray , totalCoordinatesOfEvent);
       app.addMarkerWithTimeout(totalCoordinatesOfEvent , markerContentString)
