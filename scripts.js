@@ -70,6 +70,7 @@ app.mergeEventsAndCategories = function(events, categories) {
     }
   });  
 }
+
 //listen for selection change and place markers in category
 $('select').on('change', function(){
 
@@ -142,12 +143,14 @@ app.addMarkerWithTimeout = function (coordinatesOfEvents, string) {
           content: string
         });//add event listener for click on each infowindow
     marker.addListener('click', function() {
-          infowindow.open(map, marker);
+          //when an info window is opened, close the previous one.
+          let currentInfoWindow = null;
+          currentInfoWindow = infowindow.open(map, marker);
         });
     //push marker to array
     app.markersArray.push(marker)
 }
-   
+
 function clearMarkersArray () {
   app.markersArray.forEach(function(m){
     m.setMap(null)
